@@ -101,6 +101,4 @@ expect object FunctionCollections {
 class ImageCombo(
     val name: String,
     val res: DrawableResource
-) {
-
-}
+)
