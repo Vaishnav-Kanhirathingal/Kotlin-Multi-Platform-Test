@@ -21,3 +21,16 @@ class MainActivity : ComponentActivity() {
 fun AppAndroidPreview() {
     App()
 }
+
+actual fun getCar() = Car(
+    name = "BMW",
+    price = 100_000f,
+    horsePower = 800,
+    isElectric = false
+)
+
+actual object FunctionCollections {
+    actual fun testFunctionOne() {
+        TODO()
+    }
+}

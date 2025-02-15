@@ -41,3 +41,16 @@ fun App() {
         }
     }
 }
+
+class Car(
+    val name: String,
+    val price: Float,
+    val horsePower: Int,
+    val isElectric: Boolean
+)
+
+expect fun getCar(): Car
+
+expect object FunctionCollections {
+    fun testFunctionOne()
+}
