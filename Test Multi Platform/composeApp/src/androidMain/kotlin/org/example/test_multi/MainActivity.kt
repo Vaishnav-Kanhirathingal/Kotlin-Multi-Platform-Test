@@ -11,7 +11,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            App()
+            HomeScreen.MainScreen()
         }
     }
 }
@@ -19,7 +19,7 @@ class MainActivity : ComponentActivity() {
 @Preview
 @Composable
 fun AppAndroidPreview() {
-    App()
+    HomeScreen.MainScreen()
 }
 
 actual fun getCar() = Car(
