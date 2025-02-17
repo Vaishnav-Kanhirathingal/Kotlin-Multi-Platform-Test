@@ -14,7 +14,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import org.example.test_multi.Greeting
-import org.example.test_multi.ImageCombo
+import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 import testmultiplatform.composeapp.generated.resources.Res
 import testmultiplatform.composeapp.generated.resources.compose_multiplatform
@@ -55,7 +55,7 @@ object TestingScreen {
                 painter = painterResource(resource = list.get(index = index.value).res),
                 contentDescription = null
             )
-
+            Text(text = list.get(index = index.value).name)
             Button(
                 onClick = {
                     index.value = index.value.inc().takeUnless { it > list.lastIndex } ?: 0
@@ -64,6 +64,10 @@ object TestingScreen {
             )
 
         }
-
     }
 }
+
+private class ImageCombo(
+    val name: String,
+    val res: DrawableResource
+)
