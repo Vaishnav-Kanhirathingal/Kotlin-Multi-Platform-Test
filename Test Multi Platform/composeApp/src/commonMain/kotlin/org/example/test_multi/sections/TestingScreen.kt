@@ -62,7 +62,6 @@ object TestingScreen {
                 },
                 content = { Text(text = "Switch Country") }
             )
-
         }
     }
 }

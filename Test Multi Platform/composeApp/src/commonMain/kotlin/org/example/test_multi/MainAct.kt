@@ -3,11 +3,12 @@ package org.example.test_multi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import com.arkivanov.decompose.ComponentContext
+import com.arkivanov.decompose.DelicateDecomposeApi
 import com.arkivanov.decompose.extensions.compose.subscribeAsState
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
-import com.arkivanov.decompose.router.stack.navigate
+import com.arkivanov.decompose.router.stack.push
 import com.arkivanov.decompose.value.Value
 import kotlinx.serialization.Serializable
 import org.example.test_multi.sections.FirstScreen
@@ -52,6 +53,11 @@ sealed class AppScreen {
     data object Two : AppScreen()
 }
 
+//sealed class ScreenConfig {
+//    data object One : ScreenConfig()
+//    data class Two(val id: String) : ScreenConfig()
+//}
+
 class RootComponent(
     componentContext: ComponentContext
 ) : ComponentContext by componentContext {
@@ -70,7 +76,8 @@ class RootComponent(
     private fun createScreen(screen: AppScreen, context: ComponentContext): AppScreen =
         screen
 
+    @OptIn(DelicateDecomposeApi::class)
     fun navigateTo(screen: AppScreen) {
-        navigation.navigate { listOf(screen) }
+        navigation.push(screen)
     }
 }
