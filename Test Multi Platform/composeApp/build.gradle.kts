@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    kotlin("plugin.serialization") version "2.1.0"
 }
 
 kotlin {
@@ -42,6 +43,11 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
+            //-----------------------------------------------------------------------------decompose
+            implementation("com.arkivanov.decompose:decompose:3.2.2")
+            implementation("com.arkivanov.decompose:extensions-compose:3.2.2")
+            //-------------------------------------------------------------------------serialization
+            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
         }
     }
 }
