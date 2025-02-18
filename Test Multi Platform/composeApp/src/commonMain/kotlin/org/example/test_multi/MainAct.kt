@@ -58,7 +58,11 @@ object HomeScreen {
             is AppScreen.Two -> {
                 SecondScreen.MainScreen(
                     modifier = modifier,
-                    navigateBack = { root.popTo(appScreen = AppScreen.One()) }
+                    navigateBack = {
+                        root.popWhile(
+                            predicate = { it !is AppScreen.Testing }
+                        )
+                    }
                 )
             }
         }
@@ -114,12 +118,7 @@ class RootComponent(
         }
     }
 
-    fun popTo(appScreen: AppScreen) {
-        // TODO: replace predicate
-        navigation.popWhile(
-            predicate = {
-                it !is AppScreen.Testing
-            }
-        )
+    fun popWhile(predicate: (AppScreen) -> Boolean) {
+        navigation.popWhile(predicate = predicate)
     }
 }

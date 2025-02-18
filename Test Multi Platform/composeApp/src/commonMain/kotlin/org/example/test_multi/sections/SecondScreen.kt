@@ -26,7 +26,7 @@ object SecondScreen {
                 Text(text = this@SecondScreen::class.simpleName.toString())
                 Button(
                     onClick = navigateBack,
-                    content = { Text(text = "navigate to screen 1") }
+                    content = { Text(text = "navigate to home") }
                 )
             }
         )
