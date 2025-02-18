@@ -7,7 +7,9 @@ import com.arkivanov.decompose.DelicateDecomposeApi
 import com.arkivanov.decompose.extensions.compose.subscribeAsState
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.router.stack.StackNavigation
+import com.arkivanov.decompose.router.stack.backStack
 import com.arkivanov.decompose.router.stack.childStack
+import com.arkivanov.decompose.router.stack.pop
 import com.arkivanov.decompose.router.stack.push
 import com.arkivanov.decompose.value.Value
 import kotlinx.serialization.Serializable
@@ -79,5 +81,14 @@ class RootComponent(
     @OptIn(DelicateDecomposeApi::class)
     fun navigateTo(screen: AppScreen) {
         navigation.push(screen)
+    }
+
+    fun navBack(): Boolean {
+        if (childStack.backStack.isNotEmpty()) {
+            navigation.pop()
+            return true
+        } else {
+            return false
+        }
     }
 }
