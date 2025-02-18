@@ -33,13 +33,13 @@ object HomeScreen {
         when (val screen = childStack.value.active.instance) {
             is AppScreen.One -> {
                 FirstScreen.MainScreen(
-                    toSecondScreen = { root.navigateTo(screen = AppScreen.Two) }
+                    toSecondScreen = { root.navigateTo(screen = AppScreen.Two()) }
                 )
             }
 
             is AppScreen.Two -> {
                 SecondScreen.MainScreen(
-                    navigateBack = { root.navigateTo(screen = AppScreen.One) }
+                    navigateBack = { root.navigateTo(screen = AppScreen.One()) }
                 )
             }
         }
@@ -49,10 +49,10 @@ object HomeScreen {
 @Serializable
 sealed class AppScreen {
     @Serializable
-    data object One : AppScreen()
+    class One(val id: Int = 0) : AppScreen()
 
     @Serializable
-    data object Two : AppScreen()
+    class Two(val id: Int = 0) : AppScreen()
 }
 
 //sealed class ScreenConfig {
@@ -69,7 +69,7 @@ class RootComponent(
     val childStack: Value<ChildStack<AppScreen, AppScreen>> =
         childStack(
             source = navigation,
-            initialConfiguration = AppScreen.One,
+            initialConfiguration = AppScreen.One(),
             handleBackButton = true,
             childFactory = ::createScreen,
             serializer = AppScreen.serializer()
